@@ -11,7 +11,7 @@ export function createGalleryMarkup(photos) {
         downloads,
       }) => {
         return `<div class="photo-card">
-      <a href="${largeImageURL}">
+        <a href="${largeImageURL}">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -21,7 +21,7 @@ export function createGalleryMarkup(photos) {
       <b>Views ${views}</b>
     </p>
     <p class="info-item">
-      <b>Comments${comments}</b>
+      <b>Comments ${comments}</b>
     </p>
     <p class="info-item">
       <b>Downloads ${downloads}</b>

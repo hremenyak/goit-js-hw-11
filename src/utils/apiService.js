@@ -7,15 +7,15 @@ const agent = axios.create({
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    per_page: 100,
+    per_page: 40,
   },
 });
 
-export default class ApiService {
+export class PhotosAPIService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.totalHits = 0;
+    this.allHits = 0;
   }
 
   async getPhotos() {
@@ -26,22 +26,32 @@ export default class ApiService {
     if (!hits.length) {
       throw new Error();
     }
+
+    this.incrementPage();
+
     return [hits, totalHits];
   }
 
-  get query() {
-    return this.searchQuery;
-  }
-  set query(newSearchQuery) {
-    this.searchQuery = newSearchQuery;
-  }
   incrementPage() {
     this.page += 1;
   }
-  get hitsTotal() {
-    return this.totalHits;
+
+  resetPage() {
+    this.page = 1;
   }
-  set hitsTotal(total) {
-    this.totalHits = total;
+  get query() {
+    return this.searchQuery;
+  }
+
+  set query(query) {
+    this.searchQuery = query;
+  }
+
+  get hits() {
+    return this.allHits;
+  }
+
+  set hits(sum) {
+    this.allHits = sum;
   }
 }
