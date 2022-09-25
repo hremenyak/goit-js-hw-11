@@ -29,9 +29,10 @@ async function onFormSubmit(evt) {
   photosAPI.resetPage();
   try {
     const [photos, total] = await photosAPI.getPhotos();
-
+    photosAPI.incrementPage();
     refs.gallery.innerHTML = createGalleryMarkup(photos);
     lightbox.refresh();
+    refs.loadMoreBtn.classList.remove('is-hidden');
     Notify.success(`Hooray! We found ${total} images`);
   } catch (err) {
     Notify.failure(
@@ -43,15 +44,29 @@ async function onFormSubmit(evt) {
 async function loadMore() {
   try {
     const [photos, total] = await photosAPI.getPhotos();
+    photosAPI.incrementPage();
     photosAPI.hits += photos.length;
     refs.gallery.insertAdjacentHTML('beforeend', createGalleryMarkup(photos));
+    // smoothScroll();
     lightbox.refresh();
     if (photosAPI.allHits >= total) {
       return;
     }
   } catch {
+    refs.loadMoreBtn.classList.add('is-hidden');
     Notify.info(
       'We are sorry, but you have reached the end of search results.'
     );
   }
+}
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }

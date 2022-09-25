@@ -27,8 +27,6 @@ export class PhotosAPIService {
       throw new Error();
     }
 
-    this.incrementPage();
-
     return [hits, totalHits];
   }
 
