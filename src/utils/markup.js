@@ -10,25 +10,30 @@ export function createGalleryMarkup(photos) {
         comments,
         downloads,
       }) => {
-        return `<div class="photo-card">
-        <a href="${largeImageURL}">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+        return `<a class="gallery-link" href="${largeImageURL}">
+        <div class="photo-card">    
+  <img class="image"src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
-      <b>Likes ${likes}</b>
+      <b>Likes </b>
+      <span class="info-data">${likes}</span>
     </p>
     <p class="info-item">
-      <b>Views ${views}</b>
+      <b>Views </b>
+      <span class="info-data">${views}</span>
+
     </p>
     <p class="info-item">
-      <b>Comments ${comments}</b>
+      <b>Comments </b>
+      <span class="info-data">${comments}</span>
     </p>
     <p class="info-item">
-      <b>Downloads ${downloads}</b>
+      <b>Downloads </b>
+      <span class="info-data">${downloads}</span>
     </p>
   </div>
-  </a>
-</div>`;
+</div>
+</a>`;
       }
     )
     .join('');

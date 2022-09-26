@@ -3,12 +3,22 @@
 .search-form {
   display: flex;
   justify-content: center;
-  padding-top: 10px;
-  margin-bottom: 10px;
+  position: fixed;
+  width: 100%;
+  background-color: rgb(219, 239, 215);
+  z-index: 100;
+  top: 0;
+  padding: 5px;
 }
 
+.form-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid greenyellow;
+  outline: none;
+}
 .search-btn {
-  margin-left: 10px;
+  margin-left: 20px;
   background-color: green;
   border-radius: 10px;
   border: none;
@@ -18,39 +28,67 @@
   font-size: 14px;
   opacity: 0.6;
   transition: 0.3s;
-  display: block;
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   cursor: pointer;
 
   &:hover {
     opacity: 1;
   }
-}
-.gallery {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   align-items: center;
-  //   justify-content: center;
-  //   padding: -10px;
-}
-.photo-card {
-  margin: 10px;
-  & a {
-    text-decoration: none;
+  & span {
+    margin-left: 8px;
   }
 }
-.photo-card img {
-  display: block;
-  width: 360px;
-  height: auto;
+.gallery {
+  max-width: 1200px;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px 10px;
+  display: grid;
+}
+.photo-card {
+  height: 100%;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  display: grid;
+}
+
+.gallery-link {
+  color: black;
+  border-radius: 5px;
+  font-size: 10px;
+  text-decoration: none;
+  position: relative;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.63);
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
 }
 
 .info {
-  color: black;
+  grid-template-columns: 50px 1fr 1fr 1fr;
+  padding: 10px 5px;
+  display: grid;
+
+  &-item {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  &-data {
+    margin-top: 5px;
+    display: block;
+  }
 }
 
 .load-more {
@@ -63,6 +101,7 @@
   font-size: 16px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15px;
   opacity: 0.6;
   transition: 0.3s;
   display: block;
